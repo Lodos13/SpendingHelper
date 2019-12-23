@@ -1,0 +1,13 @@
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\DataAccessLayer\bin\Release\DataAccessLayer.dll.config
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\DataAccessLayer\bin\Release\DataAccessLayer.dll
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\DataAccessLayer\bin\Release\DataAccessLayer.pdb
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\DataAccessLayer\bin\Release\DataAccessLayer.dll.CodeAnalysisLog.xml
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\DataAccessLayer\bin\Release\DataAccessLayer.dll.lastcodeanalysissucceeded
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\DataAccessLayer\bin\Release\EntityFramework.dll
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\DataAccessLayer\bin\Release\EntityFramework.SqlServer.dll
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\DataAccessLayer\bin\Release\EntityFramework.xml
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\DataAccessLayer\bin\Release\EntityFramework.SqlServer.xml
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\DataAccessLayer\obj\Release\DataAccessLayer.csproj.CoreCompileInputs.cache
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\DataAccessLayer\obj\Release\DataAccessLayer.csproj.CopyComplete
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\DataAccessLayer\obj\Release\DataAccessLayer.dll
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\DataAccessLayer\obj\Release\DataAccessLayer.pdb

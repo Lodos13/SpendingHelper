@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7a3bcc67eb4f4642a3a12cd1dce8e392" Name="Diagram1">
+        <EntityTypeShape EntityType="SpendingHelperDBModel.CCategoryDto" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpendingHelperDBModel.CFamilyDto" Width="1.5" PointX="0.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpendingHelperDBModel.CFamilyTargetDto" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpendingHelperDBModel.CLoginDataDto" Width="1.5" PointX="5.25" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpendingHelperDBModel.CPaymentDto" Width="1.5" PointX="10.5" PointY="16.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpendingHelperDBModel.CPersonDto" Width="1.5" PointX="3" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpendingHelperDBModel.CPersonalTargetDto" Width="1.5" PointX="8.25" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpendingHelperDBModel.CReminderDto" Width="1.5" PointX="5.25" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpendingHelperDBModel.CSpendingHistoryDto" Width="1.5" PointX="8.25" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpendingHelperDBModel.CSubCategoryDto" Width="1.5" PointX="8.25" PointY="16.25" IsExpanded="true" />
+        <AssociationConnector Association="SpendingHelperDBModel.FamilyTarget_fk1" ManuallyRouted="false" />
+        <AssociationConnector Association="SpendingHelperDBModel.PersonalTarget_fk1" ManuallyRouted="false" />
+        <AssociationConnector Association="SpendingHelperDBModel.SpendingHistory_fk1" ManuallyRouted="false" />
+        <AssociationConnector Association="SpendingHelperDBModel.SubCategory_fk0" ManuallyRouted="false" />
+        <AssociationConnector Association="SpendingHelperDBModel.FamilyTarget_fk0" ManuallyRouted="false" />
+        <AssociationConnector Association="SpendingHelperDBModel.Person_fk0" ManuallyRouted="false" />
+        <AssociationConnector Association="SpendingHelperDBModel.LoginData_fk0" ManuallyRouted="false" />
+        <AssociationConnector Association="SpendingHelperDBModel.Payment_fk0" ManuallyRouted="false" />
+        <AssociationConnector Association="SpendingHelperDBModel.PersonalTarget_fk0" ManuallyRouted="false" />
+        <AssociationConnector Association="SpendingHelperDBModel.Reminder_fk0" ManuallyRouted="false" />
+        <AssociationConnector Association="SpendingHelperDBModel.SpendingHistory_fk0" ManuallyRouted="false" />
+        <AssociationConnector Association="SpendingHelperDBModel.SubCategory_fk1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

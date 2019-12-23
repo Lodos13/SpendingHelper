@@ -1,0 +1,5 @@
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\BllModel\bin\Debug\BllModel.dll
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\BllModel\bin\Debug\BllModel.pdb
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\BllModel\obj\Debug\BllModel.csproj.CoreCompileInputs.cache
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\BllModel\obj\Debug\BllModel.dll
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\BllModel\obj\Debug\BllModel.pdb

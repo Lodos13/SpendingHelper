@@ -1,0 +1,184 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.572
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UiLayer", "UiLayer\UiLayer.csproj", "{027DAFB0-85EB-407B-8677-BA8500419753}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{3469F022-7131-4BD9-982E-E91E0D045D9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogicLayer", "BusinessLogicLayer\BusinessLogicLayer.csproj", "{3AD9F5FB-3154-4BF6-831A-136E4858A221}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{ECD4A447-6185-43D6-BD7C-DDC0EF70E9A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils", "Utils\Utils.csproj", "{E2359242-0EB0-4994-B320-30743B2A6801}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BllModel", "BllModel\BllModel.csproj", "{FA825FCA-56AE-4303-8EF0-A4A830338B1D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLLtoDBTransportLayer", "BLLtoDBTransportLayer\BLLtoDBTransportLayer.csproj", "{55DC354C-2246-48F4-ADFD-963668AE5828}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LoginService", "LoginService", "{4ABD3F28-415D-4735-8748-3BBE09D81276}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoginServiceCore", "LoginServiceCore\LoginServiceCore.csproj", "{BEB1B3D9-5779-4685-BEA1-CE91DDEE6594}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DALService", "DALService", "{D3B7A7DE-AFE4-462B-87F8-6B13C69E3FF6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BllService", "BllService", "{FF6EFA6B-D53C-4059-8DAE-9C21871A8BF1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlltoDalTransportContract", "BlltoDalTransportContract\BlltoDalTransportContract.csproj", "{9331DFD6-5E7C-4641-91F9-D089DBD35C86}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BllToDalTransport", "BllToDalTransport", "{D7729374-28F4-44F7-9F54-387C6F55BD68}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DalHost", "DalHost\DalHost.csproj", "{F27C74B2-4ACF-4C59-B6DC-122E7B3F7A7C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoginHost", "LoginHost\LoginHost.csproj", "{2766322A-A55F-4559-9793-84FAB70D4E00}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoginServiceContract", "LoginServiceContract\LoginServiceContract.csproj", "{D0D46B35-6711-4D8E-BA58-E145D53C54FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BllClientContract", "BllClientContract\BllClientContract.csproj", "{DE1C40A5-FA51-4648-9160-FF58E96505DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BllHost", "BllHost\BllHost.csproj", "{76BFC53A-CC83-4778-98C2-29A1DAFF961B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{027DAFB0-85EB-407B-8677-BA8500419753}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{027DAFB0-85EB-407B-8677-BA8500419753}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{027DAFB0-85EB-407B-8677-BA8500419753}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{027DAFB0-85EB-407B-8677-BA8500419753}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3469F022-7131-4BD9-982E-E91E0D045D9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3469F022-7131-4BD9-982E-E91E0D045D9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3469F022-7131-4BD9-982E-E91E0D045D9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3469F022-7131-4BD9-982E-E91E0D045D9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AD9F5FB-3154-4BF6-831A-136E4858A221}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AD9F5FB-3154-4BF6-831A-136E4858A221}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AD9F5FB-3154-4BF6-831A-136E4858A221}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AD9F5FB-3154-4BF6-831A-136E4858A221}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECD4A447-6185-43D6-BD7C-DDC0EF70E9A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECD4A447-6185-43D6-BD7C-DDC0EF70E9A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECD4A447-6185-43D6-BD7C-DDC0EF70E9A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECD4A447-6185-43D6-BD7C-DDC0EF70E9A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2359242-0EB0-4994-B320-30743B2A6801}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2359242-0EB0-4994-B320-30743B2A6801}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2359242-0EB0-4994-B320-30743B2A6801}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2359242-0EB0-4994-B320-30743B2A6801}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA825FCA-56AE-4303-8EF0-A4A830338B1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA825FCA-56AE-4303-8EF0-A4A830338B1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA825FCA-56AE-4303-8EF0-A4A830338B1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA825FCA-56AE-4303-8EF0-A4A830338B1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55DC354C-2246-48F4-ADFD-963668AE5828}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55DC354C-2246-48F4-ADFD-963668AE5828}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55DC354C-2246-48F4-ADFD-963668AE5828}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55DC354C-2246-48F4-ADFD-963668AE5828}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEB1B3D9-5779-4685-BEA1-CE91DDEE6594}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEB1B3D9-5779-4685-BEA1-CE91DDEE6594}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEB1B3D9-5779-4685-BEA1-CE91DDEE6594}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEB1B3D9-5779-4685-BEA1-CE91DDEE6594}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9331DFD6-5E7C-4641-91F9-D089DBD35C86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9331DFD6-5E7C-4641-91F9-D089DBD35C86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9331DFD6-5E7C-4641-91F9-D089DBD35C86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9331DFD6-5E7C-4641-91F9-D089DBD35C86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F27C74B2-4ACF-4C59-B6DC-122E7B3F7A7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F27C74B2-4ACF-4C59-B6DC-122E7B3F7A7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F27C74B2-4ACF-4C59-B6DC-122E7B3F7A7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F27C74B2-4ACF-4C59-B6DC-122E7B3F7A7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2766322A-A55F-4559-9793-84FAB70D4E00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2766322A-A55F-4559-9793-84FAB70D4E00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2766322A-A55F-4559-9793-84FAB70D4E00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2766322A-A55F-4559-9793-84FAB70D4E00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0D46B35-6711-4D8E-BA58-E145D53C54FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0D46B35-6711-4D8E-BA58-E145D53C54FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0D46B35-6711-4D8E-BA58-E145D53C54FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0D46B35-6711-4D8E-BA58-E145D53C54FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE1C40A5-FA51-4648-9160-FF58E96505DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE1C40A5-FA51-4648-9160-FF58E96505DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE1C40A5-FA51-4648-9160-FF58E96505DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE1C40A5-FA51-4648-9160-FF58E96505DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76BFC53A-CC83-4778-98C2-29A1DAFF961B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76BFC53A-CC83-4778-98C2-29A1DAFF961B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76BFC53A-CC83-4778-98C2-29A1DAFF961B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76BFC53A-CC83-4778-98C2-29A1DAFF961B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3469F022-7131-4BD9-982E-E91E0D045D9D} = {D3B7A7DE-AFE4-462B-87F8-6B13C69E3FF6}
+		{3AD9F5FB-3154-4BF6-831A-136E4858A221} = {FF6EFA6B-D53C-4059-8DAE-9C21871A8BF1}
+		{FA825FCA-56AE-4303-8EF0-A4A830338B1D} = {FF6EFA6B-D53C-4059-8DAE-9C21871A8BF1}
+		{55DC354C-2246-48F4-ADFD-963668AE5828} = {D7729374-28F4-44F7-9F54-387C6F55BD68}
+		{BEB1B3D9-5779-4685-BEA1-CE91DDEE6594} = {4ABD3F28-415D-4735-8748-3BBE09D81276}
+		{9331DFD6-5E7C-4641-91F9-D089DBD35C86} = {D7729374-28F4-44F7-9F54-387C6F55BD68}
+		{D7729374-28F4-44F7-9F54-387C6F55BD68} = {D3B7A7DE-AFE4-462B-87F8-6B13C69E3FF6}
+		{F27C74B2-4ACF-4C59-B6DC-122E7B3F7A7C} = {D3B7A7DE-AFE4-462B-87F8-6B13C69E3FF6}
+		{2766322A-A55F-4559-9793-84FAB70D4E00} = {4ABD3F28-415D-4735-8748-3BBE09D81276}
+		{D0D46B35-6711-4D8E-BA58-E145D53C54FC} = {4ABD3F28-415D-4735-8748-3BBE09D81276}
+		{DE1C40A5-FA51-4648-9160-FF58E96505DD} = {FF6EFA6B-D53C-4059-8DAE-9C21871A8BF1}
+		{76BFC53A-CC83-4778-98C2-29A1DAFF961B} = {FF6EFA6B-D53C-4059-8DAE-9C21871A8BF1}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4F5AC12F-ED99-4F39-9855-F47A36F5E4EB}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 15
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://dev.azure.com/vacourse5
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = UiLayer\\UiLayer.csproj
+		SccProjectName1 = UiLayer
+		SccLocalPath1 = UiLayer
+		SccProjectUniqueName2 = DataAccessLayer\\DataAccessLayer.csproj
+		SccProjectTopLevelParentUniqueName2 = SpendingHelper.sln
+		SccProjectName2 = DataAccessLayer
+		SccLocalPath2 = DataAccessLayer
+		SccProjectUniqueName3 = BusinessLogicLayer\\BusinessLogicLayer.csproj
+		SccProjectTopLevelParentUniqueName3 = SpendingHelper.sln
+		SccProjectName3 = BusinessLogicLayer
+		SccLocalPath3 = BusinessLogicLayer
+		SccProjectUniqueName4 = UnitTests\\UnitTests.csproj
+		SccProjectName4 = UnitTests
+		SccLocalPath4 = UnitTests
+		SccProjectUniqueName5 = Utils\\Utils.csproj
+		SccProjectName5 = Utils
+		SccLocalPath5 = Utils
+		SccProjectUniqueName6 = BllModel\\BllModel.csproj
+		SccProjectTopLevelParentUniqueName6 = SpendingHelper.sln
+		SccProjectName6 = BllModel
+		SccLocalPath6 = BllModel
+		SccProjectUniqueName7 = BLLtoDBTransportLayer\\BLLtoDBTransportLayer.csproj
+		SccProjectTopLevelParentUniqueName7 = SpendingHelper.sln
+		SccProjectName7 = BLLtoDBTransportLayer
+		SccLocalPath7 = BLLtoDBTransportLayer
+		SccProjectUniqueName8 = LoginServiceCore\\LoginServiceCore.csproj
+		SccProjectTopLevelParentUniqueName8 = SpendingHelper.sln
+		SccProjectName8 = LoginServiceCore
+		SccLocalPath8 = LoginServiceCore
+		SccProjectUniqueName9 = BlltoDalTransportContract\\BlltoDalTransportContract.csproj
+		SccProjectTopLevelParentUniqueName9 = SpendingHelper.sln
+		SccProjectName9 = BlltoDalTransportContract
+		SccLocalPath9 = BlltoDalTransportContract
+		SccProjectUniqueName10 = DalHost\\DalHost.csproj
+		SccProjectTopLevelParentUniqueName10 = SpendingHelper.sln
+		SccProjectName10 = DalHost
+		SccLocalPath10 = DalHost
+		SccProjectUniqueName11 = LoginHost\\LoginHost.csproj
+		SccProjectTopLevelParentUniqueName11 = SpendingHelper.sln
+		SccProjectName11 = LoginHost
+		SccLocalPath11 = LoginHost
+		SccProjectUniqueName12 = LoginServiceContract\\LoginServiceContract.csproj
+		SccProjectTopLevelParentUniqueName12 = SpendingHelper.sln
+		SccProjectName12 = LoginServiceContract
+		SccLocalPath12 = LoginServiceContract
+		SccProjectUniqueName13 = BllClientContract\\BllClientContract.csproj
+		SccProjectTopLevelParentUniqueName13 = SpendingHelper.sln
+		SccProjectName13 = BllClientContract
+		SccLocalPath13 = BllClientContract
+		SccProjectUniqueName14 = BllHost\\BllHost.csproj
+		SccProjectTopLevelParentUniqueName14 = SpendingHelper.sln
+		SccProjectName14 = BllHost
+		SccLocalPath14 = BllHost
+	EndGlobalSection
+EndGlobal

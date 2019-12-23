@@ -1,0 +1,14 @@
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\UnitTests\bin\Debug\UnitTests.dll
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\UnitTests\bin\Debug\UnitTests.pdb
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\UnitTests\obj\Debug\UnitTests.csprojAssemblyReference.cache
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\UnitTests\obj\Debug\UnitTests.csproj.CoreCompileInputs.cache
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\UnitTests\obj\Debug\UnitTests.csproj.CopyComplete
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\UnitTests\obj\Debug\UnitTests.dll
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\UnitTests\obj\Debug\UnitTests.pdb

@@ -1,0 +1,832 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SpendingHelperDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Family">
+          <Key>
+            <PropertyRef Name="FamilyID" />
+          </Key>
+          <Property Name="FamilyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FamilyName" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Budget" Type="int" />
+          <Property Name="MembersCounter" Type="int" />
+        </EntityType>
+        <EntityType Name="FamilyTarget">
+          <Key>
+            <PropertyRef Name="FamilyID" />
+            <PropertyRef Name="CategoryID" />
+            <PropertyRef Name="Month" />
+          </Key>
+          <Property Name="FamilyID" Type="int" Nullable="false" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="Month" Type="date" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="IsGeneral" Type="bit" Nullable="false" />
+          <Property Name="IsComplited" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LoginData">
+          <Key>
+            <PropertyRef Name="PersonID" />
+          </Key>
+          <Property Name="PersonID" Type="int" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Salt" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar" MaxLength="60" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="PaymentID" />
+          </Key>
+          <Property Name="PaymentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SubCategoryID" Type="int" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="Spended" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="PersonID" />
+          </Key>
+          <Property Name="PersonID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="FamilyID" Type="int" />
+          <Property Name="Budget" Type="int" />
+        </EntityType>
+        <EntityType Name="PersonalTarget">
+          <Key>
+            <PropertyRef Name="PersonID" />
+            <PropertyRef Name="CategoryID" />
+            <PropertyRef Name="Month" />
+          </Key>
+          <Property Name="PersonID" Type="int" Nullable="false" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="Month" Type="date" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="IsGeneral" Type="bit" Nullable="false" />
+          <Property Name="IsComplited" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reminder">
+          <Key>
+            <PropertyRef Name="PersonID" />
+            <PropertyRef Name="Title" />
+          </Key>
+          <Property Name="PersonID" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="DayOfMonth" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SpendingHistory">
+          <Key>
+            <PropertyRef Name="PersonID" />
+            <PropertyRef Name="CategoryID" />
+            <PropertyRef Name="Month" />
+          </Key>
+          <Property Name="PersonID" Type="int" Nullable="false" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="Month" Type="date" Nullable="false" />
+          <Property Name="Spended" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SubCategory">
+          <Key>
+            <PropertyRef Name="SubCategoryID" />
+          </Key>
+          <Property Name="SubCategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ParentCategoryID" Type="int" Nullable="false" />
+          <Property Name="PersonID" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FamilyTarget_fk0">
+          <End Role="Family" Type="Self.Family" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="FamilyTarget" Type="Self.FamilyTarget" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Family">
+              <PropertyRef Name="FamilyID" />
+            </Principal>
+            <Dependent Role="FamilyTarget">
+              <PropertyRef Name="FamilyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FamilyTarget_fk1">
+          <End Role="Category" Type="Self.Category" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="FamilyTarget" Type="Self.FamilyTarget" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="FamilyTarget">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="LoginData_fk0">
+          <End Role="Person" Type="Self.Person" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="LoginData" Type="Self.LoginData" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="LoginData">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Payment_fk0">
+          <End Role="SubCategory" Type="Self.SubCategory" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubCategory">
+              <PropertyRef Name="SubCategoryID" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="SubCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Person_fk0">
+          <End Role="Family" Type="Self.Family" Multiplicity="0..1" />
+          <End Role="Person" Type="Self.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Family">
+              <PropertyRef Name="FamilyID" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="FamilyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PersonalTarget_fk0">
+          <End Role="Person" Type="Self.Person" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PersonalTarget" Type="Self.PersonalTarget" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="PersonalTarget">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PersonalTarget_fk1">
+          <End Role="Category" Type="Self.Category" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PersonalTarget" Type="Self.PersonalTarget" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="PersonalTarget">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Reminder_fk0">
+          <End Role="Person" Type="Self.Person" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Reminder" Type="Self.Reminder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Reminder">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SpendingHistory_fk0">
+          <End Role="Person" Type="Self.Person" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SpendingHistory" Type="Self.SpendingHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="SpendingHistory">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SpendingHistory_fk1">
+          <End Role="Category" Type="Self.Category" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SpendingHistory" Type="Self.SpendingHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="SpendingHistory">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SubCategory_fk0">
+          <End Role="Category" Type="Self.Category" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SubCategory" Type="Self.SubCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="SubCategory">
+              <PropertyRef Name="ParentCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SubCategory_fk1">
+          <End Role="Person" Type="Self.Person" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SubCategory" Type="Self.SubCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="SubCategory">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SpendingHelperDBModelStoreContainer">
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Family" EntityType="Self.Family" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FamilyTarget" EntityType="Self.FamilyTarget" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoginData" EntityType="Self.LoginData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersonalTarget" EntityType="Self.PersonalTarget" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reminder" EntityType="Self.Reminder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SpendingHistory" EntityType="Self.SpendingHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubCategory" EntityType="Self.SubCategory" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FamilyTarget_fk0" Association="Self.FamilyTarget_fk0">
+            <End Role="Family" EntitySet="Family" />
+            <End Role="FamilyTarget" EntitySet="FamilyTarget" />
+          </AssociationSet>
+          <AssociationSet Name="FamilyTarget_fk1" Association="Self.FamilyTarget_fk1">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="FamilyTarget" EntitySet="FamilyTarget" />
+          </AssociationSet>
+          <AssociationSet Name="LoginData_fk0" Association="Self.LoginData_fk0">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="LoginData" EntitySet="LoginData" />
+          </AssociationSet>
+          <AssociationSet Name="Payment_fk0" Association="Self.Payment_fk0">
+            <End Role="SubCategory" EntitySet="SubCategory" />
+            <End Role="Payment" EntitySet="Payment" />
+          </AssociationSet>
+          <AssociationSet Name="Person_fk0" Association="Self.Person_fk0">
+            <End Role="Family" EntitySet="Family" />
+            <End Role="Person" EntitySet="Person" />
+          </AssociationSet>
+          <AssociationSet Name="PersonalTarget_fk0" Association="Self.PersonalTarget_fk0">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="PersonalTarget" EntitySet="PersonalTarget" />
+          </AssociationSet>
+          <AssociationSet Name="PersonalTarget_fk1" Association="Self.PersonalTarget_fk1">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="PersonalTarget" EntitySet="PersonalTarget" />
+          </AssociationSet>
+          <AssociationSet Name="Reminder_fk0" Association="Self.Reminder_fk0">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Reminder" EntitySet="Reminder" />
+          </AssociationSet>
+          <AssociationSet Name="SpendingHistory_fk0" Association="Self.SpendingHistory_fk0">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="SpendingHistory" EntitySet="SpendingHistory" />
+          </AssociationSet>
+          <AssociationSet Name="SpendingHistory_fk1" Association="Self.SpendingHistory_fk1">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="SpendingHistory" EntitySet="SpendingHistory" />
+          </AssociationSet>
+          <AssociationSet Name="SubCategory_fk0" Association="Self.SubCategory_fk0">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="SubCategory" EntitySet="SubCategory" />
+          </AssociationSet>
+          <AssociationSet Name="SubCategory_fk1" Association="Self.SubCategory_fk1">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="SubCategory" EntitySet="SubCategory" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SpendingHelperDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CCategoryDto">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="FamilyTargets" Relationship="Self.FamilyTarget_fk1" FromRole="Category" ToRole="FamilyTarget" />
+          <NavigationProperty Name="PersonalTargets" Relationship="Self.PersonalTarget_fk1" FromRole="Category" ToRole="PersonalTarget" />
+          <NavigationProperty Name="SpendingHistories" Relationship="Self.SpendingHistory_fk1" FromRole="Category" ToRole="SpendingHistory" />
+          <NavigationProperty Name="SubCategories" Relationship="Self.SubCategory_fk0" FromRole="Category" ToRole="SubCategory" />
+        </EntityType>
+        <EntityType Name="CFamilyDto">
+          <Key>
+            <PropertyRef Name="FamilyID" />
+          </Key>
+          <Property Name="FamilyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FamilyName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Budget" Type="Int32" />
+          <NavigationProperty Name="FamilyTargets" Relationship="Self.FamilyTarget_fk0" FromRole="Family" ToRole="FamilyTarget" />
+          <NavigationProperty Name="People" Relationship="Self.Person_fk0" FromRole="Family" ToRole="Person" />
+          <Property Name="MembersCounter" Type="Int32" />
+        </EntityType>
+        <EntityType Name="CFamilyTargetDto">
+          <Key>
+            <PropertyRef Name="FamilyID" />
+            <PropertyRef Name="CategoryID" />
+            <PropertyRef Name="Month" />
+          </Key>
+          <Property Name="FamilyID" Type="Int32" Nullable="false" />
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="Month" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="Category" Relationship="Self.FamilyTarget_fk1" FromRole="FamilyTarget" ToRole="Category" />
+          <NavigationProperty Name="Family" Relationship="Self.FamilyTarget_fk0" FromRole="FamilyTarget" ToRole="Family" />
+          <Property Name="IsGeneral" Type="Boolean" Nullable="false" />
+          <Property Name="IsComplited" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CLoginDataDto">
+          <Key>
+            <PropertyRef Name="PersonID" />
+          </Key>
+          <Property Name="PersonID" Type="Int32" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Salt" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Person" Relationship="Self.LoginData_fk0" FromRole="LoginData" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="CPaymentDto">
+          <Key>
+            <PropertyRef Name="PaymentID" />
+          </Key>
+          <Property Name="PaymentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubCategoryID" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Spended" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="SubCategory" Relationship="Self.Payment_fk0" FromRole="Payment" ToRole="SubCategory" />
+        </EntityType>
+        <EntityType Name="CPersonDto">
+          <Key>
+            <PropertyRef Name="PersonID" />
+          </Key>
+          <Property Name="PersonID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FamilyID" Type="Int32" />
+          <Property Name="Budget" Type="Int32" />
+          <NavigationProperty Name="Family" Relationship="Self.Person_fk0" FromRole="Person" ToRole="Family" />
+          <NavigationProperty Name="LoginData" Relationship="Self.LoginData_fk0" FromRole="Person" ToRole="LoginData" />
+          <NavigationProperty Name="PersonalTargets" Relationship="Self.PersonalTarget_fk0" FromRole="Person" ToRole="PersonalTarget" />
+          <NavigationProperty Name="Reminders" Relationship="Self.Reminder_fk0" FromRole="Person" ToRole="Reminder" />
+          <NavigationProperty Name="SpendingHistories" Relationship="Self.SpendingHistory_fk0" FromRole="Person" ToRole="SpendingHistory" />
+          <NavigationProperty Name="SubCategories" Relationship="Self.SubCategory_fk1" FromRole="Person" ToRole="SubCategory" />
+        </EntityType>
+        <EntityType Name="CPersonalTargetDto">
+          <Key>
+            <PropertyRef Name="PersonID" />
+            <PropertyRef Name="CategoryID" />
+            <PropertyRef Name="Month" />
+          </Key>
+          <Property Name="PersonID" Type="Int32" Nullable="false" />
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="Month" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="Category" Relationship="Self.PersonalTarget_fk1" FromRole="PersonalTarget" ToRole="Category" />
+          <NavigationProperty Name="Person" Relationship="Self.PersonalTarget_fk0" FromRole="PersonalTarget" ToRole="Person" />
+          <Property Name="IsGeneral" Type="Boolean" Nullable="false" />
+          <Property Name="IsComplited" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CReminderDto">
+          <Key>
+            <PropertyRef Name="PersonID" />
+            <PropertyRef Name="Title" />
+          </Key>
+          <Property Name="PersonID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DayOfMonth" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Person" Relationship="Self.Reminder_fk0" FromRole="Reminder" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="CSpendingHistoryDto">
+          <Key>
+            <PropertyRef Name="PersonID" />
+            <PropertyRef Name="CategoryID" />
+            <PropertyRef Name="Month" />
+          </Key>
+          <Property Name="PersonID" Type="Int32" Nullable="false" />
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="Month" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Spended" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="Category" Relationship="Self.SpendingHistory_fk1" FromRole="SpendingHistory" ToRole="Category" />
+          <NavigationProperty Name="Person" Relationship="Self.SpendingHistory_fk0" FromRole="SpendingHistory" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="CSubCategoryDto">
+          <Key>
+            <PropertyRef Name="SubCategoryID" />
+          </Key>
+          <Property Name="SubCategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParentCategoryID" Type="Int32" Nullable="false" />
+          <Property Name="PersonID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Category" Relationship="Self.SubCategory_fk0" FromRole="SubCategory" ToRole="Category" />
+          <NavigationProperty Name="Payments" Relationship="Self.Payment_fk0" FromRole="SubCategory" ToRole="Payment" />
+          <NavigationProperty Name="Person" Relationship="Self.SubCategory_fk1" FromRole="SubCategory" ToRole="Person" />
+        </EntityType>
+        <Association Name="FamilyTarget_fk1">
+          <End Role="Category" Type="SpendingHelperDBModel.CCategoryDto" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="FamilyTarget" Type="SpendingHelperDBModel.CFamilyTargetDto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="FamilyTarget">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PersonalTarget_fk1">
+          <End Role="Category" Type="SpendingHelperDBModel.CCategoryDto" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PersonalTarget" Type="SpendingHelperDBModel.CPersonalTargetDto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="PersonalTarget">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SpendingHistory_fk1">
+          <End Role="Category" Type="SpendingHelperDBModel.CCategoryDto" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SpendingHistory" Type="SpendingHelperDBModel.CSpendingHistoryDto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="SpendingHistory">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SubCategory_fk0">
+          <End Role="Category" Type="SpendingHelperDBModel.CCategoryDto" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SubCategory" Type="SpendingHelperDBModel.CSubCategoryDto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="SubCategory">
+              <PropertyRef Name="ParentCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FamilyTarget_fk0">
+          <End Role="Family" Type="SpendingHelperDBModel.CFamilyDto" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="FamilyTarget" Type="SpendingHelperDBModel.CFamilyTargetDto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Family">
+              <PropertyRef Name="FamilyID" />
+            </Principal>
+            <Dependent Role="FamilyTarget">
+              <PropertyRef Name="FamilyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Person_fk0">
+          <End Role="Family" Type="SpendingHelperDBModel.CFamilyDto" Multiplicity="0..1" />
+          <End Role="Person" Type="SpendingHelperDBModel.CPersonDto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Family">
+              <PropertyRef Name="FamilyID" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="FamilyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="LoginData_fk0">
+          <End Role="Person" Type="SpendingHelperDBModel.CPersonDto" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="LoginData" Type="SpendingHelperDBModel.CLoginDataDto" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="LoginData">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Payment_fk0">
+          <End Role="SubCategory" Type="SpendingHelperDBModel.CSubCategoryDto" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Payment" Type="SpendingHelperDBModel.CPaymentDto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubCategory">
+              <PropertyRef Name="SubCategoryID" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="SubCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PersonalTarget_fk0">
+          <End Role="Person" Type="SpendingHelperDBModel.CPersonDto" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PersonalTarget" Type="SpendingHelperDBModel.CPersonalTargetDto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="PersonalTarget">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Reminder_fk0">
+          <End Role="Person" Type="SpendingHelperDBModel.CPersonDto" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Reminder" Type="SpendingHelperDBModel.CReminderDto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Reminder">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SpendingHistory_fk0">
+          <End Role="Person" Type="SpendingHelperDBModel.CPersonDto" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SpendingHistory" Type="SpendingHelperDBModel.CSpendingHistoryDto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="SpendingHistory">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SubCategory_fk1">
+          <End Role="Person" Type="SpendingHelperDBModel.CPersonDto" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SubCategory" Type="SpendingHelperDBModel.CSubCategoryDto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="SubCategory">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SpendingHelperDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CCategoriesDto" EntityType="SpendingHelperDBModel.CCategoryDto" />
+          <EntitySet Name="CFamiliesDto" EntityType="SpendingHelperDBModel.CFamilyDto" />
+          <EntitySet Name="CFamilyTargetsDto" EntityType="SpendingHelperDBModel.CFamilyTargetDto" />
+          <EntitySet Name="CLoginDatasDto" EntityType="SpendingHelperDBModel.CLoginDataDto" />
+          <EntitySet Name="CPaymentsDto" EntityType="SpendingHelperDBModel.CPaymentDto" />
+          <EntitySet Name="CPeopleDto" EntityType="SpendingHelperDBModel.CPersonDto" />
+          <EntitySet Name="CPersonalTargetsDto" EntityType="SpendingHelperDBModel.CPersonalTargetDto" />
+          <EntitySet Name="CRemindersDto" EntityType="SpendingHelperDBModel.CReminderDto" />
+          <EntitySet Name="CSpendingHistoriesDto" EntityType="SpendingHelperDBModel.CSpendingHistoryDto" />
+          <EntitySet Name="CSubCategoriesDto" EntityType="SpendingHelperDBModel.CSubCategoryDto" />
+          <AssociationSet Name="FamilyTarget_fk1" Association="Self.FamilyTarget_fk1">
+            <End Role="Category" EntitySet="CCategoriesDto" />
+            <End Role="FamilyTarget" EntitySet="CFamilyTargetsDto" />
+          </AssociationSet>
+          <AssociationSet Name="PersonalTarget_fk1" Association="Self.PersonalTarget_fk1">
+            <End Role="Category" EntitySet="CCategoriesDto" />
+            <End Role="PersonalTarget" EntitySet="CPersonalTargetsDto" />
+          </AssociationSet>
+          <AssociationSet Name="SpendingHistory_fk1" Association="Self.SpendingHistory_fk1">
+            <End Role="Category" EntitySet="CCategoriesDto" />
+            <End Role="SpendingHistory" EntitySet="CSpendingHistoriesDto" />
+          </AssociationSet>
+          <AssociationSet Name="SubCategory_fk0" Association="Self.SubCategory_fk0">
+            <End Role="Category" EntitySet="CCategoriesDto" />
+            <End Role="SubCategory" EntitySet="CSubCategoriesDto" />
+          </AssociationSet>
+          <AssociationSet Name="FamilyTarget_fk0" Association="Self.FamilyTarget_fk0">
+            <End Role="Family" EntitySet="CFamiliesDto" />
+            <End Role="FamilyTarget" EntitySet="CFamilyTargetsDto" />
+          </AssociationSet>
+          <AssociationSet Name="Person_fk0" Association="Self.Person_fk0">
+            <End Role="Family" EntitySet="CFamiliesDto" />
+            <End Role="Person" EntitySet="CPeopleDto" />
+          </AssociationSet>
+          <AssociationSet Name="LoginData_fk0" Association="Self.LoginData_fk0">
+            <End Role="Person" EntitySet="CPeopleDto" />
+            <End Role="LoginData" EntitySet="CLoginDatasDto" />
+          </AssociationSet>
+          <AssociationSet Name="Payment_fk0" Association="Self.Payment_fk0">
+            <End Role="SubCategory" EntitySet="CSubCategoriesDto" />
+            <End Role="Payment" EntitySet="CPaymentsDto" />
+          </AssociationSet>
+          <AssociationSet Name="PersonalTarget_fk0" Association="Self.PersonalTarget_fk0">
+            <End Role="Person" EntitySet="CPeopleDto" />
+            <End Role="PersonalTarget" EntitySet="CPersonalTargetsDto" />
+          </AssociationSet>
+          <AssociationSet Name="Reminder_fk0" Association="Self.Reminder_fk0">
+            <End Role="Person" EntitySet="CPeopleDto" />
+            <End Role="Reminder" EntitySet="CRemindersDto" />
+          </AssociationSet>
+          <AssociationSet Name="SpendingHistory_fk0" Association="Self.SpendingHistory_fk0">
+            <End Role="Person" EntitySet="CPeopleDto" />
+            <End Role="SpendingHistory" EntitySet="CSpendingHistoriesDto" />
+          </AssociationSet>
+          <AssociationSet Name="SubCategory_fk1" Association="Self.SubCategory_fk1">
+            <End Role="Person" EntitySet="CPeopleDto" />
+            <End Role="SubCategory" EntitySet="CSubCategoriesDto" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SpendingHelperDBModelStoreContainer" CdmEntityContainer="SpendingHelperDBEntities">
+          <EntitySetMapping Name="CCategoriesDto">
+            <EntityTypeMapping TypeName="SpendingHelperDBModel.CCategoryDto">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CFamiliesDto">
+            <EntityTypeMapping TypeName="SpendingHelperDBModel.CFamilyDto">
+              <MappingFragment StoreEntitySet="Family">
+                <ScalarProperty Name="MembersCounter" ColumnName="MembersCounter" />
+                <ScalarProperty Name="FamilyID" ColumnName="FamilyID" />
+                <ScalarProperty Name="FamilyName" ColumnName="FamilyName" />
+                <ScalarProperty Name="Budget" ColumnName="Budget" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CFamilyTargetsDto">
+            <EntityTypeMapping TypeName="SpendingHelperDBModel.CFamilyTargetDto">
+              <MappingFragment StoreEntitySet="FamilyTarget">
+                <ScalarProperty Name="IsComplited" ColumnName="IsComplited" />
+                <ScalarProperty Name="IsGeneral" ColumnName="IsGeneral" />
+                <ScalarProperty Name="FamilyID" ColumnName="FamilyID" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CLoginDatasDto">
+            <EntityTypeMapping TypeName="SpendingHelperDBModel.CLoginDataDto">
+              <MappingFragment StoreEntitySet="LoginData">
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Salt" ColumnName="Salt" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CPaymentsDto">
+            <EntityTypeMapping TypeName="SpendingHelperDBModel.CPaymentDto">
+              <MappingFragment StoreEntitySet="Payment">
+                <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
+                <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Spended" ColumnName="Spended" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CPeopleDto">
+            <EntityTypeMapping TypeName="SpendingHelperDBModel.CPersonDto">
+              <MappingFragment StoreEntitySet="Person">
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="FamilyID" ColumnName="FamilyID" />
+                <ScalarProperty Name="Budget" ColumnName="Budget" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CPersonalTargetsDto">
+            <EntityTypeMapping TypeName="SpendingHelperDBModel.CPersonalTargetDto">
+              <MappingFragment StoreEntitySet="PersonalTarget">
+                <ScalarProperty Name="IsComplited" ColumnName="IsComplited" />
+                <ScalarProperty Name="IsGeneral" ColumnName="IsGeneral" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CRemindersDto">
+            <EntityTypeMapping TypeName="SpendingHelperDBModel.CReminderDto">
+              <MappingFragment StoreEntitySet="Reminder">
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="DayOfMonth" ColumnName="DayOfMonth" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CSpendingHistoriesDto">
+            <EntityTypeMapping TypeName="SpendingHelperDBModel.CSpendingHistoryDto">
+              <MappingFragment StoreEntitySet="SpendingHistory">
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="Spended" ColumnName="Spended" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CSubCategoriesDto">
+            <EntityTypeMapping TypeName="SpendingHelperDBModel.CSubCategoryDto">
+              <MappingFragment StoreEntitySet="SubCategory">
+                <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+                <ScalarProperty Name="ParentCategoryID" ColumnName="ParentCategoryID" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

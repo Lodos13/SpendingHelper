@@ -1,0 +1,158 @@
+﻿<Window x:Class="UiLayer.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UiLayer"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="Login" Height="350"  Width="400">
+
+    <Window.Resources>
+        <Style x:Key="RegisterOnlyObject" TargetType="TextBox" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsRegisterMod}" Value="True">
+                    <Setter Property='Control.Visibility' Value="Visible"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsRegisterMod}" Value="False">
+                    <Setter Property='Control.Visibility' Value="Collapsed"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    
+    <Border BorderBrush="Black" BorderThickness="1">
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Center">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignTextBlock}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsRegisterMod}" Value="True">
+                                <Setter Property='Text' 
+                                        Value="O! New blood! Do me a favor and fill this form."/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsRegisterMod}" Value="False">
+                                <Setter Property='Text' 
+                                        Value="Welcome! I don't recognize you. Remind me who you are, please"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+
+            <TextBox materialDesign:HintAssist.Hint="Your name"
+                     Style="{StaticResource RegisterOnlyObject}"
+                     VerticalAlignment="Center" 
+                     Grid.Row="1" Grid.ColumnSpan="3"
+                     Text="{Binding Name}"/>
+
+            <TextBox VerticalAlignment="Center" 
+                     Grid.Row="2" Grid.ColumnSpan="3"
+                     Text="{Binding Username, Mode=TwoWay}">
+                <TextBox.Style>
+                    <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsRegisterMod}" Value="True">
+                                <Setter Property='materialDesign:HintAssist.Hint' 
+                                        Value="Username"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsRegisterMod}" Value="False">
+                                <Setter Property='materialDesign:HintAssist.Hint' 
+                                        Value="Username or email"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+
+
+            <TextBox materialDesign:HintAssist.Hint="Mail"
+                     Style="{StaticResource RegisterOnlyObject}"
+                     VerticalAlignment="Center" 
+                     Grid.Row="3" Grid.ColumnSpan="3"
+                     Text="{Binding Email, Mode=TwoWay}">
+            </TextBox>
+
+
+            <PasswordBox PasswordChanged="Password_PasswordChanged"
+                         materialDesign:HintAssist.Hint="Password"
+                         Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" 
+                         Grid.Row="4" Grid.ColumnSpan="3"/>
+
+
+            <PasswordBox PasswordChanged="PasswordRepeat_PasswordChanged"
+                         materialDesign:HintAssist.Hint="Repeat password"
+                         Grid.Row="5" Grid.ColumnSpan="3">
+                <PasswordBox.Style>
+                    <Style TargetType="PasswordBox" BasedOn="{StaticResource MaterialDesignFloatingHintPasswordBox}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsRegisterMod}" Value="True">
+                                <Setter Property='Control.Visibility' Value="Visible"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsRegisterMod}" Value="False">
+                                <Setter Property='Control.Visibility' Value="Collapsed"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </PasswordBox.Style>
+            </PasswordBox>
+
+            <Button Grid.Row="7" Command="{Binding RegisterCommand}">
+                <Button.Style>
+                    <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsRegisterMod}" Value="True">
+                                <Setter Property='Content' Value="Сonfirm registration"/>
+                                <Setter Property="IsDefault" Value="True"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsRegisterMod}" Value="False">
+                                <Setter Property='Content' Value="New? Register NOW!!!"/>
+                                <Setter Property="IsDefault" Value="False"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button Grid.Row="7" Grid.Column="2" 
+                    Command="{Binding LoginCommand}">
+                <Button.Style>
+                    <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsRegisterMod}" Value="True">
+                                <Setter Property='Content' Value="Return to log in"/>
+                                <Setter Property="IsDefault" Value="False"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsRegisterMod}" Value="False">
+                                <Setter Property='Content' Value="Log in"/>
+                                <Setter Property="IsDefault" Value="True"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </Grid>
+    </Border>
+</Window>

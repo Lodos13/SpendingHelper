@@ -1,0 +1,7 @@
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\Utils\bin\Release\Utils.dll
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\Utils\bin\Release\Utils.pdb
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\Utils\bin\Release\Utils.dll.CodeAnalysisLog.xml
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\Utils\bin\Release\Utils.dll.lastcodeanalysissucceeded
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\Utils\obj\Release\Utils.csproj.CoreCompileInputs.cache
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\Utils\obj\Release\Utils.dll
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\Utils\obj\Release\Utils.pdb

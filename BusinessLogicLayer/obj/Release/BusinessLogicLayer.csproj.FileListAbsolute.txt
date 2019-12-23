@@ -1,0 +1,2 @@
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\BusinessLogicLayer\obj\Release\BusinessLogicLayer.csprojAssemblyReference.cache
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\BusinessLogicLayer\obj\Release\BusinessLogicLayer.csproj.CoreCompileInputs.cache

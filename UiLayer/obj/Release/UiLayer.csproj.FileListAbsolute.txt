@@ -1,0 +1,15 @@
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\UiLayer\obj\Release\UiLayer.csprojAssemblyReference.cache
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\UiLayer\obj\Release\UiLayer.exe.config
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\UiLayer\obj\Release\Controls\SpendingShowControl.g.cs
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\UiLayer\obj\Release\Controls\StatisticShowControl.g.cs
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\UiLayer\obj\Release\PagesAndWindows\FamilyPage.g.cs
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\UiLayer\obj\Release\PagesAndWindows\LoginWindow.g.cs
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\UiLayer\obj\Release\PagesAndWindows\MainWindow.g.cs
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\UiLayer\obj\Release\PagesAndWindows\PersonalPage.g.cs
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\UiLayer\obj\Release\Controls\ScottLogic\PieChart\Legend.g.cs
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\UiLayer\obj\Release\Controls\ScottLogic\PieChart\PieChartLayout.g.cs
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\UiLayer\obj\Release\Controls\ScottLogic\PieChart\PiePlotter.g.cs
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\UiLayer\obj\Release\App.g.cs
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\UiLayer\obj\Release\GeneratedInternalTypeHelper.g.cs
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\UiLayer\obj\Release\UiLayer_MarkupCompile.cache
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\UiLayer\obj\Release\UiLayer_MarkupCompile.lref

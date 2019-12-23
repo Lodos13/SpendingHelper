@@ -1,0 +1,20 @@
+﻿UiLayer
+
+
+winexe
+C#
+.cs
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\UiLayer\obj\Debug\
+UiLayer
+none
+false
+DEBUG;TRACE
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\UiLayer\App.xaml
+13-1914082284
+1-2138471434
+38-2001448079
+26-1683627396
+Controls\SpendingShowControl.xaml;Controls\StatisticShowControl.xaml;PagesAndWindows\CreateAndEditForms\FamilyEditForm.xaml;PagesAndWindows\CreateAndEditForms\PaymentEditForm.xaml;PagesAndWindows\CreateAndEditForms\SingleIntForm.xaml;PagesAndWindows\CreateAndEditForms\SubCategoryEditForm.xaml;PagesAndWindows\FamilyPage.xaml;PagesAndWindows\LoginWindow.xaml;PagesAndWindows\MainWindow.xaml;PagesAndWindows\PersonalPage.xaml;Controls\ScottLogic\PieChart\Legend.xaml;Controls\ScottLogic\PieChart\PieChartLayout.xaml;Controls\ScottLogic\PieChart\PiePlotter.xaml;
+
+True
+

@@ -1,0 +1,76 @@
+﻿<Page x:Class="UiLayer.FamilyPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UiLayer"
+        xmlns:controls ="clr-namespace:UiLayer.Controls"
+        mc:Ignorable="d"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Stretch"
+        Title="FamilyPage" WindowTitle="Family page">
+    <Grid>
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Family - "/>
+                <TextBlock Text="{Binding FamilyName}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Family ID - "/>
+                <TextBlock Text="{Binding FamilyId}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Members - "/>
+                <TextBlock Text="{Binding MembersCounter}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <StackPanel.Style>
+                    <Style>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsBudgetExceeded}" Value="True">
+                                <Setter Property="TextBlock.Foreground"  Value="DarkRed"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsBudgetExceeded}" Value="False">
+                                <Setter Property="TextBlock.Foreground"  Value="Green"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackPanel.Style>
+                <TextBlock Text="Family budget - "/>
+                <TextBlock Text="{Binding Budget}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Spended this month - "/>
+                <TextBlock Text="{Binding SpendedThisMonth}"/>
+            </StackPanel>
+
+            
+            <TabControl Background="{DynamicResource MaterialDesignPaper}"
+                        FontFamily="{DynamicResource MaterialDesignFont}"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch">
+                <!--<TabItem Header="My targets"></TabItem>-->
+
+                <TabItem Header="Spendings">
+                    <controls:SpendingShowControl DataContext="{Binding Payments}"/>
+                </TabItem>
+
+                <TabItem Header="Statistic">
+                    <controls:StatisticShowControl DataContext="{Binding Categories}"/>
+                </TabItem>
+            </TabControl>
+
+        </StackPanel>
+    </Grid>
+</Page>

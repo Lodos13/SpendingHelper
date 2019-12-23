@@ -1,0 +1,333 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SpendingHelperDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryID" />
+    </Key>
+    <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Family">
+    <Key>
+      <PropertyRef Name="FamilyID" />
+    </Key>
+    <Property Name="FamilyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FamilyName" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Budget" Type="int" />
+    <Property Name="MembersCounter" Type="int" />
+  </EntityType>
+  <EntityType Name="FamilyTarget">
+    <Key>
+      <PropertyRef Name="FamilyID" />
+      <PropertyRef Name="CategoryID" />
+      <PropertyRef Name="Month" />
+    </Key>
+    <Property Name="FamilyID" Type="int" Nullable="false" />
+    <Property Name="CategoryID" Type="int" Nullable="false" />
+    <Property Name="Month" Type="date" Nullable="false" />
+    <Property Name="Type" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Amount" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="IsGeneral" Type="bit" Nullable="false" />
+    <Property Name="IsComplited" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LoginData">
+    <Key>
+      <PropertyRef Name="PersonID" />
+    </Key>
+    <Property Name="PersonID" Type="int" Nullable="false" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Username" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Salt" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="PasswordHash" Type="nvarchar" MaxLength="60" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Payment">
+    <Key>
+      <PropertyRef Name="PaymentID" />
+    </Key>
+    <Property Name="PaymentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SubCategoryID" Type="int" Nullable="false" />
+    <Property Name="Date" Type="date" Nullable="false" />
+    <Property Name="Spended" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Person">
+    <Key>
+      <PropertyRef Name="PersonID" />
+    </Key>
+    <Property Name="PersonID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="FamilyID" Type="int" />
+    <Property Name="Budget" Type="int" />
+  </EntityType>
+  <EntityType Name="PersonalTarget">
+    <Key>
+      <PropertyRef Name="PersonID" />
+      <PropertyRef Name="CategoryID" />
+      <PropertyRef Name="Month" />
+    </Key>
+    <Property Name="PersonID" Type="int" Nullable="false" />
+    <Property Name="CategoryID" Type="int" Nullable="false" />
+    <Property Name="Month" Type="date" Nullable="false" />
+    <Property Name="Type" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Amount" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="IsGeneral" Type="bit" Nullable="false" />
+    <Property Name="IsComplited" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Reminder">
+    <Key>
+      <PropertyRef Name="PersonID" />
+      <PropertyRef Name="Title" />
+    </Key>
+    <Property Name="PersonID" Type="int" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="100" />
+    <Property Name="DayOfMonth" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SpendingHistory">
+    <Key>
+      <PropertyRef Name="PersonID" />
+      <PropertyRef Name="CategoryID" />
+      <PropertyRef Name="Month" />
+    </Key>
+    <Property Name="PersonID" Type="int" Nullable="false" />
+    <Property Name="CategoryID" Type="int" Nullable="false" />
+    <Property Name="Month" Type="date" Nullable="false" />
+    <Property Name="Spended" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SubCategory">
+    <Key>
+      <PropertyRef Name="SubCategoryID" />
+    </Key>
+    <Property Name="SubCategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ParentCategoryID" Type="int" Nullable="false" />
+    <Property Name="PersonID" Type="int" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <Association Name="FamilyTarget_fk0">
+    <End Role="Family" Type="Self.Family" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="FamilyTarget" Type="Self.FamilyTarget" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Family">
+        <PropertyRef Name="FamilyID" />
+      </Principal>
+      <Dependent Role="FamilyTarget">
+        <PropertyRef Name="FamilyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FamilyTarget_fk1">
+    <End Role="Category" Type="Self.Category" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="FamilyTarget" Type="Self.FamilyTarget" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="FamilyTarget">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LoginData_fk0">
+    <End Role="Person" Type="Self.Person" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="LoginData" Type="Self.LoginData" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="LoginData">
+        <PropertyRef Name="PersonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Payment_fk0">
+    <End Role="SubCategory" Type="Self.SubCategory" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SubCategory">
+        <PropertyRef Name="SubCategoryID" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="SubCategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Person_fk0">
+    <End Role="Family" Type="Self.Family" Multiplicity="0..1" />
+    <End Role="Person" Type="Self.Person" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Family">
+        <PropertyRef Name="FamilyID" />
+      </Principal>
+      <Dependent Role="Person">
+        <PropertyRef Name="FamilyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PersonalTarget_fk0">
+    <End Role="Person" Type="Self.Person" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="PersonalTarget" Type="Self.PersonalTarget" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="PersonalTarget">
+        <PropertyRef Name="PersonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PersonalTarget_fk1">
+    <End Role="Category" Type="Self.Category" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="PersonalTarget" Type="Self.PersonalTarget" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="PersonalTarget">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Reminder_fk0">
+    <End Role="Person" Type="Self.Person" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Reminder" Type="Self.Reminder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="Reminder">
+        <PropertyRef Name="PersonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SpendingHistory_fk0">
+    <End Role="Person" Type="Self.Person" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SpendingHistory" Type="Self.SpendingHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="SpendingHistory">
+        <PropertyRef Name="PersonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SpendingHistory_fk1">
+    <End Role="Category" Type="Self.Category" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SpendingHistory" Type="Self.SpendingHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="SpendingHistory">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SubCategory_fk0">
+    <End Role="Category" Type="Self.Category" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SubCategory" Type="Self.SubCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="SubCategory">
+        <PropertyRef Name="ParentCategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SubCategory_fk1">
+    <End Role="Person" Type="Self.Person" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SubCategory" Type="Self.SubCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="SubCategory">
+        <PropertyRef Name="PersonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SpendingHelperDBModelStoreContainer">
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Family" EntityType="Self.Family" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FamilyTarget" EntityType="Self.FamilyTarget" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LoginData" EntityType="Self.LoginData" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PersonalTarget" EntityType="Self.PersonalTarget" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Reminder" EntityType="Self.Reminder" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SpendingHistory" EntityType="Self.SpendingHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SubCategory" EntityType="Self.SubCategory" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FamilyTarget_fk0" Association="Self.FamilyTarget_fk0">
+      <End Role="Family" EntitySet="Family" />
+      <End Role="FamilyTarget" EntitySet="FamilyTarget" />
+    </AssociationSet>
+    <AssociationSet Name="FamilyTarget_fk1" Association="Self.FamilyTarget_fk1">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="FamilyTarget" EntitySet="FamilyTarget" />
+    </AssociationSet>
+    <AssociationSet Name="LoginData_fk0" Association="Self.LoginData_fk0">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="LoginData" EntitySet="LoginData" />
+    </AssociationSet>
+    <AssociationSet Name="Payment_fk0" Association="Self.Payment_fk0">
+      <End Role="SubCategory" EntitySet="SubCategory" />
+      <End Role="Payment" EntitySet="Payment" />
+    </AssociationSet>
+    <AssociationSet Name="Person_fk0" Association="Self.Person_fk0">
+      <End Role="Family" EntitySet="Family" />
+      <End Role="Person" EntitySet="Person" />
+    </AssociationSet>
+    <AssociationSet Name="PersonalTarget_fk0" Association="Self.PersonalTarget_fk0">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="PersonalTarget" EntitySet="PersonalTarget" />
+    </AssociationSet>
+    <AssociationSet Name="PersonalTarget_fk1" Association="Self.PersonalTarget_fk1">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="PersonalTarget" EntitySet="PersonalTarget" />
+    </AssociationSet>
+    <AssociationSet Name="Reminder_fk0" Association="Self.Reminder_fk0">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="Reminder" EntitySet="Reminder" />
+    </AssociationSet>
+    <AssociationSet Name="SpendingHistory_fk0" Association="Self.SpendingHistory_fk0">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="SpendingHistory" EntitySet="SpendingHistory" />
+    </AssociationSet>
+    <AssociationSet Name="SpendingHistory_fk1" Association="Self.SpendingHistory_fk1">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="SpendingHistory" EntitySet="SpendingHistory" />
+    </AssociationSet>
+    <AssociationSet Name="SubCategory_fk0" Association="Self.SubCategory_fk0">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="SubCategory" EntitySet="SubCategory" />
+    </AssociationSet>
+    <AssociationSet Name="SubCategory_fk1" Association="Self.SubCategory_fk1">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="SubCategory" EntitySet="SubCategory" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

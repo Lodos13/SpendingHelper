@@ -1,0 +1,159 @@
+﻿<Page x:Class="UiLayer.PersonalPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UiLayer"
+        xmlns:controls ="clr-namespace:UiLayer.Controls"
+        mc:Ignorable="d"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Stretch"
+        Title="PersonalPage" WindowTitle="Personal page">
+
+    <Page.Resources>
+        <Style x:Key="InFamilyObject" TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsInFamily}" Value="True">
+                    <Setter Property='Control.Visibility' Value="Visible"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsInFamily}" Value="False">
+                    <Setter Property='Control.Visibility' Value="Collapsed"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="NotInFamilyObject" TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsInFamily}" Value="True">
+                    <Setter Property='Control.Visibility' Value="Collapsed"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsInFamily}" Value="False">
+                    <Setter Property='Control.Visibility' Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
+    
+    <Grid>
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Name - "/>
+                <TextBlock Text="{Binding Path = Name}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Family - "
+                           VerticalAlignment="Center"/>
+                <TextBlock Text ="{Binding FamilyName}"
+                           VerticalAlignment="Center"
+                           Margin="8">
+                    <TextBlock.InputBindings>
+                        <MouseBinding Command="{Binding RedirectToMyFamilyPageCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" 
+                                      MouseAction="LeftClick"/>
+                    </TextBlock.InputBindings>
+                </TextBlock>
+                <Button Style="{StaticResource InFamilyObject}" 
+                        Command="{Binding CreateFamilyCommand}"
+                        Content="Create a family"/>
+                <Button Style="{StaticResource InFamilyObject}" 
+                        Command="{Binding JoinFamilyCommand}"
+                        Content="Join to a family"/>
+                <Button Style="{StaticResource NotInFamilyObject}" 
+                        Command="{Binding LeaveFamilyCommand}"
+                        Content="Leave the family"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <StackPanel.Style>
+                    <Style>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsBudgetExceeded}" Value="True">
+                                <Setter Property="TextBlock.Foreground"  Value="DarkRed"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsBudgetExceeded}" Value="False">
+                                <Setter Property="TextBlock.Foreground"  Value="Green"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackPanel.Style>
+                <TextBlock Text="Budget - "/>
+                <TextBlock Text="{Binding Budget}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Spended this month - "/>
+                <TextBlock Text="{Binding SpendedThisMonth}"/>
+            </StackPanel>
+
+            <TabControl Background="{DynamicResource MaterialDesignPaper}"
+                        FontFamily="{DynamicResource MaterialDesignFont}"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch">
+                <TabItem Header="Categories">
+                    <StackPanel Orientation="Vertical">
+
+                        <StackPanel Orientation="Horizontal">
+                            <Button Content="Add new sub category"
+                                Command="{Binding AddNewSubCategory}"/>
+                            <Button Content="Edit sub category"
+                                Command="{Binding EditSubCategory}"
+                                CommandParameter="{Binding ElementName = CategoryListView, Path = SelectedItem.SelectedSubCategory}"/>
+                            <Button Content="Delete sub category"
+                                Command="{Binding DeleteSubCategory}"
+                                CommandParameter="{Binding ElementName = CategoryListView, Path = SelectedItem.SelectedSubCategory}"/>
+                        </StackPanel>
+
+                        <ListView Name="CategoryListView"
+                                  Height="500"
+                                  ItemsSource="{Binding Categories}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <TreeViewItem Header="{Binding Title}">
+                                        <ListView ItemsSource="{Binding SubCategories}"
+                                                  SelectedItem="{Binding SelectedSubCategory}"
+                                                  DisplayMemberPath="Title">
+                                        </ListView>
+                                    </TreeViewItem>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackPanel>
+                </TabItem>
+
+                <TabItem Header="Spendings">
+                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <Button Content="Add new spending"
+                                Command="{Binding AddNewPaymentCommand}"/>
+                            <Button Content="Edit spending"
+                                Command="{Binding EditPaymentCommand}"
+                                CommandParameter="{Binding ElementName = SpendingsControl, Path = SelectedPayment}"/>
+                            <Button Content="Delete spending"
+                                Command="{Binding DeletePaymentCommand}"
+                                CommandParameter="{Binding ElementName = SpendingsControl, Path = SelectedPayment}"/>
+                        </StackPanel>
+                        
+                        <controls:SpendingShowControl 
+                                x:Name="SpendingsControl"
+                                DataContext="{Binding Payments}"/>
+                    </StackPanel>
+                        <!--
+                </TabItem>
+                
+                <TabItem Header="Statistic">
+                        -->
+                        <controls:StatisticShowControl 
+                            DataContext="{Binding Categories}"/>
+                    </StackPanel>
+                </TabItem>
+            </TabControl>
+        </StackPanel>
+    </Grid>
+</Page>

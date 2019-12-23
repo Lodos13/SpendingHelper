@@ -1,0 +1,5 @@
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\Utils\bin\Debug\Utils.dll
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\Utils\bin\Debug\Utils.pdb
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\Utils\obj\Debug\Utils.csproj.CoreCompileInputs.cache
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\Utils\obj\Debug\Utils.dll
+J:\Veeam Academy\Workspace\Anton.Golubev\SpendingHelper\Utils\obj\Debug\Utils.pdb
